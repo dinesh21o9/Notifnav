@@ -1,10 +1,38 @@
 import { StyleSheet, Text, View } from 'react-native'
 import { useNavigation } from "@react-navigation/native";
 import { NativeBaseProvider, Input, Button, Box, Center , Heading , VStack, FormControl } from "native-base";
-import React from 'react'
+import React,{useState} from 'react'
 
 const Login = () => {
-    const navigation = useNavigation();
+  const [name,setName] = useState("");
+  const [email,setEmail] = useState("");
+  const [password,setPassword] = useState("");
+
+  const navigation = useNavigation();
+
+  const handleSubmit= async(e) => {
+    // e.preventDefault();
+    console.log(name,email,password);
+    //the below code is taken from NoteState
+    const response = await fetch("http://localhost:8000/api/auth/createuser", {
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json',
+        },
+        body:JSON.stringify({name,email,password}) //this is that same body as we do in thunderclient
+      });
+      const json= await response.json();       // in this case which is auth token 
+      console.log(json);
+        // Save the auth token and redirect
+        if(json.success){
+        localStorage.setItem('token',json.authtoken);
+        navigation.navigate("Home");       //this is redirecting me to the home page after I login
+        console.log("Account created SUCCESSFULLY","success")
+      }
+      else{console.log("Invalid Credentials","danger")}
+    }
+
+
   return (
     <NativeBaseProvider>
       <Center w="100%">
@@ -21,24 +49,29 @@ const Login = () => {
         </Heading>
         <VStack space={3} mt="5">
           <FormControl>
+            <FormControl.Label>Name</FormControl.Label>
+            <Input onChangeText={(naam)=>setName(naam)}/>
+          </FormControl>
+          <FormControl>
             <FormControl.Label>Email</FormControl.Label>
-            <Input />
+            <Input type='email' onChangeText={(mail)=>setEmail(mail)}/>
           </FormControl>
           <FormControl>
             <FormControl.Label>Password</FormControl.Label>
-            <Input type="password" />
+            <Input type="password" onChangeText={(pass)=>setPassword(pass)} />
           </FormControl>
-          <FormControl>
+          {/* <FormControl>
             <FormControl.Label>Confirm Password</FormControl.Label>
             <Input type="password" />
-          </FormControl>
-          <Button mt="2" colorScheme="indigo" onPress={() => navigation.navigate("Home")}>
+          </FormControl> */}
+          <Button mt="2" colorScheme="indigo" onPress={handleSubmit}>
             Sign up
           </Button>
         </VStack>
       </Box>
     </Center>
     </NativeBaseProvider>
+
   )
 }
 
