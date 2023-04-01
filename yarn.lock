@@ -8497,6 +8497,11 @@
     "jscodeshift" "^0.13.1"
     "nullthrows" "^1.1.1"
 
+"react-native-collapsible@^1.6.1":
+  "integrity" "sha512-orF4BeiXd2hZW7fu9YcqIJXzN6TJcFcddY807D3MAOVktLuW9oQ+RIkrTJ5DR3v9ZOFfREkOjEmS79qeUTvkBQ=="
+  "resolved" "https://registry.npmjs.org/react-native-collapsible/-/react-native-collapsible-1.6.1.tgz"
+  "version" "1.6.1"
+
 "react-native-gradle-plugin@^0.71.15":
   "integrity" "sha512-H2BjG2zk7B7Wii9sXvd9qhCVRQYDAHSWdMw9tscmZBqSP62DkIWEQSk4/B2GhQ4aK9ydVXgtqR6tBeg3yy8TSA=="
   "resolved" "https://registry.npmjs.org/react-native-gradle-plugin/-/react-native-gradle-plugin-0.71.16.tgz"
