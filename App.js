@@ -7,13 +7,16 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import {Text,StyleSheet,View} from "react-native";
 import Schedule from "./src/screens/Schedule";
 import Essentials from "./src/components/Essentials";
+import AddSch from "./src/screens/AddSch"
+import SchState from "./src/context/schedules/SchState";
 
 
 const App=()=>{
   const Stack = createNativeStackNavigator();
   return(
+    <SchState>
       <NavigationContainer>
-      <Stack.Navigator initialRouteName="Sch">
+      <Stack.Navigator initialRouteName="Ess">
         
         {/* Login Page */}
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false}}/>
@@ -26,9 +29,12 @@ const App=()=>{
 
         <Stack.Screen name="Ess" component={Essentials} options={{ headerShown: false}}/>
 
+        <Stack.Screen name="As" component={AddSch} options={{ headerShown: false}}/>
+
 
       </Stack.Navigator>
     </NavigationContainer>
+    </SchState>
   )
 };
 
