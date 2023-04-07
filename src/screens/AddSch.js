@@ -34,7 +34,6 @@ const AddNote = (props) => {
 
 
   return (
-    // here i am reusing the home webpage 
     <>
     <Text>Title</Text>
      <TextInput type='outlined' name='title' label="title" value={title} onChangeText={title=> setTitle(title)}/>

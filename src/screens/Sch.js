@@ -59,3 +59,29 @@
 //   </Card>
 //   )
 // // }
+
+
+//edit sch
+    
+// <Text>Title</Text>
+// <TextInput type='outlined' name='title' label="title" value={props.title} onChangeText={title=> props.setTitle(...props.title,title)}/>
+
+// <Text>Description</Text>
+// <TextInput type='outlined' name='description' label="description" value={props.description} onChangeText={desc => props.setDesc(...props.description,desc)} /> 
+
+
+// <Text>Starting time</Text>
+// <TextInput type='outlined' name='timestr' label="time start" value={props.timestr} onChangeText={timestr => props.setTimestr(timestr)} /> 
+
+// <Text>Ending time</Text>
+// <TextInput type='outlined' name='timeend' label="time End " value={props.timeend} onChangeText={timeend => props.setTimeend(timeend)} /> 
+
+// <Text>Location Name</Text>
+// <TextInput type='outlined' name='locationName' label="Location name" value={props.locationName} onChangeText={ln => props.setLn(ln)} /> 
+
+// <Text>Starting Stats</Text>
+// <TextInput type='outlined' name='locationStats' label="Location stats" value={props.locationStats} onChangeText={ls => props.setLs(ls)} /> 
+
+
+// <Button onPress={handleClick}>Add Note</Button> 
+// {/*disabled={sch.description.length<5 || note.title.length<5}*/}
