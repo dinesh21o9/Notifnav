@@ -18,7 +18,7 @@ app.use(cors())
 app.use('/api/auth',require('./routes/auth'))     // app.use is used so that we can use other saved file as response rather than wirting all code in same file which makes a big fuss here 
 app.use('/api/sch',require('./routes/sch'))     // app.use is used so that we can use other saved file as response rather than wirting all code in same file which makes a big fuss here 
 
-app.listen(port, () => {
+app.listen(port,() => {
   console.log(`Example app listening on port http://localhost:${port}`)
 })
 

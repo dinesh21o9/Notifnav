@@ -1,9 +1,10 @@
+import AsyncStorage from "@react-native-community/async-storage";
 import SchContext from "./schContext";
 import { useState } from "react";
 
 const SchState=(props)=>{
 
-  const host="http://localhost:8001";
+  const host="http:192.168.29.86:8001";
 
     const schInitial=[]
       const [schs,setSchs]=useState(schInitial)
@@ -14,7 +15,7 @@ const SchState=(props)=>{
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'auth-token':localStorage.getItem('token')
+            'auth-token':await AsyncStorage.getItem('token')
           }
         });
         // TODO API CALL
@@ -30,7 +31,7 @@ const SchState=(props)=>{
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'auth-token':localStorage.getItem('token')
+            'auth-token':await AsyncStorage.getItem('token')
           },
           body: JSON.stringify({title,description,day,locationName,locationStats,timestr,timeend})
         });
@@ -46,7 +47,7 @@ const SchState=(props)=>{
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json',
-            'auth-token':localStorage.getItem('token')
+            'auth-token':await AsyncStorage.getItem('token')
           }
         });
         const json= response.json();
@@ -64,7 +65,7 @@ const SchState=(props)=>{
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
-            'auth-token':localStorage.getItem('token')
+            'auth-token':await AsyncStorage.getItem('token')
           },
           body: JSON.stringify({title,description,day,locationName,locationStats,timestr,timeend})    // here data is coming in form of string which can be iterated and edited by using loops
         });
