@@ -1,15 +1,37 @@
+// import React from 'react';
+// import { NavigationContainer } from '@react-navigation/native';
+// import Tabs from './navigation/tabs';
+// import SchState from './context/schedules/SchState';
+
+
+// const App = () => {
+//   return(
+//     <SchState>
+//       <NavigationContainer>
+
+//         <Tabs/>
+//       </NavigationContainer>
+//     </SchState>
+//   )
+// }
+
+// export default App;
+
+
+
 import React from "react";
-import Login from "./src/screens/Login";
-import Home from "./src/screens/Home";
+import Login from './screens/Login';
+import HomeScreen from "./screens/HomeScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // import { NativeBaseProvider, Box } from "native-base";
 import {Text,StyleSheet,View} from "react-native";
-import Schedule from "./src/screens/Schedule";
-import Essentials from "./src/components/Essentials";
-import AddSch from "./src/screens/AddSch"
-import SchState from "./src/context/schedules/SchState";
-import EditSch from "./src/components/EditSch";
+// import Schedule from "./screens/Schedule";
+// import Essentials from "./src/components/Essentials";
+// import AddSch from "./src/screens/AddSch"
+import SchState from "./context/schedules/SchState";
+// import EditSch from "./src/components/EditSch";
+import Tabs from './screens/tabs';
 
 
 const App=()=>{
@@ -17,23 +39,26 @@ const App=()=>{
   return(
     <SchState>
       <NavigationContainer>
-      <Stack.Navigator initialRouteName="Ess">
+      <Stack.Navigator initialRouteName="Tabs">
         
         {/* Login Page */}
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false}}/>
         
         {/* Home Page */}
-        <Stack.Screen name="Home" component={Home} options={{ headerShown: false}}/>
+        {/* <Stack.Screen name="HomeScreen" component={HomeScreen} options={{ headerShown: false}}/> */}
 
         {/* Schedule Page */}
-        <Stack.Screen name="Sch" component={Schedule} options={{ headerShown: false}}/>
+        {/* <Stack.Screen name="Sch" component={Schedule} options={{ headerShown: false}}/> */}
 
         {/* Essnetials */}
-        <Stack.Screen name="Ess" component={Essentials} options={{ headerShown: false}}/>
+        {/* <Stack.Screen name="Ess" component={Essentials} options={{ headerShown: false}}/> */}
         {/* AddSch */}
-        <Stack.Screen name="As" component={AddSch} options={{ headerShown: false}}/>
+        {/* <Stack.Screen name="As" component={AddSch} options={{ headerShown: false}}/> */}
         {/* AddSch */}
-        <Stack.Screen name="Es" component={EditSch} options={{ headerShown: false}}/>
+        {/* <Stack.Screen name="Es" component={EditSch} options={{ headerShown: false}}/> */}
+
+        {/* Tab */}
+        <Stack.Screen name="Tabs" component={Tabs} options={{ headerShown: false}}/>
 
 
       </Stack.Navigator>
@@ -41,9 +66,6 @@ const App=()=>{
     </SchState>
   )
 };
-
-const styles=StyleSheet.create({
-}) 
 
 export default App;
 
