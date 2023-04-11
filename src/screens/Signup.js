@@ -5,7 +5,7 @@ import React,{useState} from 'react'
 import AsyncStorage from '@react-native-community/async-storage';
 
 const Login = () => {
-  // const [name,setName] = useState("");
+  const [name,setName] = useState("");
   const [email,setEmail] = useState("");
   const [password,setPassword] = useState("");
 
@@ -13,14 +13,14 @@ const Login = () => {
 
   const handleSubmit= async(e) => {
     // e.preventDefault();
-    // console.log(email,password);
+    console.log(name,email,password);
     //the below code is taken from NoteState
-    const response = await fetch("http:192.168.29.86:8001/api/auth/login", {        // here the ip address of your computer will come ivp4
+    const response = await fetch("http:192.168.29.86:8001/api/auth/createuser", {        // here
     method: 'POST',
     headers: {
         'Content-Type': 'application/json',
         },
-        body:JSON.stringify({email,password}) //this is that same body as we do in thunderclient
+        body:JSON.stringify({name,email,password}) //this is that same body as we do in thunderclient
       });
       const json= await response.json();       // in this case which is auth token 
       console.log(json);
@@ -28,7 +28,7 @@ const Login = () => {
         if(json.success){
         await AsyncStorage.setItem('token',json.authtoken);
         navigation.navigate("Home");       //this is redirecting me to the home page after I login
-        console.log("Logged IN SUCCESSFULLY","success")
+        console.log("Account created SUCCESSFULLY","success")
       }
       else{console.log("Invalid Credentials","danger")}
     }
@@ -46,9 +46,13 @@ const Login = () => {
         <Heading mt="1" color="coolGray.600" _dark={{
         color: "warmGray.200"
       }} fontWeight="medium" size="xs">
-          Login up to continue!
+          Sign up to continue!
         </Heading>
         <VStack space={3} mt="5">
+          <FormControl>
+            <FormControl.Label>Name</FormControl.Label>
+            <Input onChangeText={(naam)=>setName(naam)}/>
+          </FormControl>
           <FormControl>
             <FormControl.Label>Email</FormControl.Label>
             <Input type='email' onChangeText={(mail)=>setEmail(mail)}/>
@@ -62,7 +66,7 @@ const Login = () => {
             <Input type="password" />
           </FormControl> */}
           <Button mt="2" colorScheme="indigo" onPress={handleSubmit}>
-            Login 
+            Sign up
           </Button>
         </VStack>
       </Box>
