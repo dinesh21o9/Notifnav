@@ -1,12 +1,11 @@
 {
   "expo": {
-    "name": "DoneWithIt",
-    "slug": "DoneWithIt",
+    "name": "AwesomeProject",
+    "slug": "AwesomeProject",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
-    "jsEngine": "jsc",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
@@ -27,6 +26,5 @@
     "web": {
       "favicon": "./assets/favicon.png"
     }
-    
   }
 }
