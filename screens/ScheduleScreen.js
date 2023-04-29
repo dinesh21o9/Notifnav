@@ -1,25 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import { Button, StyleSheet, Text, View , FlatList, ScrollView, Span} from 'react-native';
 import { ScrollableTabView, DefaultTabBar, ScrollableTabBar } from '@valdio/react-native-scrollable-tabview'
-import Card from '../components/card';
-import { onChange } from 'deprecated-react-native-prop-types/DeprecatedTextInputPropTypes';
-// import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-cards';
-// import Card from '../components/card';
-// import ParallaxScrollView from 'react-native-scroll-view';
+import MyComp from '../components/card';
+import { NativeBaseProvider } from 'native-base';
 
 
 const ScheduleScreen = ({navigation}) =>{
-  const tabLabel = useState([
-    {tabLabel: 'Monday', key: 1},
-    {tabLabel: 'Tuesday', key: 2},
-    {tabLabel: 'Wednesday', key: 3},
-    {tabLabel: 'Thursday', key: 4},
-    {tabLabel: 'Friday', key: 5},
-    {tabLabel: 'Saturday', key: 6},
-    {tabLabel: 'Sunday', key: 7},
-
-
-  ]);
 
   const pTasks = [
     {user: 1, title: 'Get groceries', description: 'Buy Tomatoes and veggies', day: 'Monday', locationName: 'Market', timestr: "12:00:00", timeend: "13:00:00" },
@@ -30,13 +16,25 @@ const ScheduleScreen = ({navigation}) =>{
   ];
 
   const [tasks , setTasks] = useState(pTasks);
-  const [day, setDay] = useState('Monday');
+  
+  // const [page, setPage] = useState([
+  //   { day: 'Monday', key : 0},
+  //   { day: 'Tuesday', key : 1},
+  //   { day: 'Wednesday', key : 2},
+  //   { day: 'Thrusday', key : 3},
+  //   { day: 'Friday', key : 4},
+  //   { day: 'Saturday', key : 5},
+  //   { day: 'Sunday', key : 6},
+  // ]);
+
+  
   const [tabIndex, setTabIndex] = useState(0);
 
 
   _onRefresh = (callback) => {
     setTimeout(function(){test: 'Test1'} , 3000) ;
   }
+  
   setStateForTab = (i) => {
     // const day = tabLabel[i].tabLabel;
     // const tasks = [];
@@ -57,90 +55,89 @@ const ScheduleScreen = ({navigation}) =>{
     pullToRefresh={this._onRefresh}
     onChangeTab={(event) => {this.setStateForTab(event.i)}}
     renderTabBar={() => <ScrollableTabBar/>
-  }
+  } 
   >
+
     <Text  tabLabel='Monday'>
       <View isActive = {tabIndex==0} style={styles.container}>
-        <ScrollView>
-          <FlatList
+      {/* tabLabel = 'Monday'; */}
+          <FlatList 
             data={tasks}
-            renderItem={({ item }) => ( //if(item.day == tabLabel)
-              <Card>
-                <Text style={styles.titleText}>{ 
-                  item.title
-                }</Text>
-                <Text style={styles.descText}>{
-                  item.description 
-                }</Text>
-                <Text style={styles.day}>{
-                  item.timestr 
-                }</Text>
-                <Text style={styles.day}>{
-                  item.timeend 
-                }</Text>
-                {/* <Span style={styles.titleText}>
-                  item.timeend
-                </Span> */}
-              </Card> 
+            renderItem={({ item , tabLabel}) => ( //if(item.day == tabLabel)
+              <ScrollView>
+                <MyComp item={item} />
+              </ScrollView>
             )}
           />
-        </ScrollView>
+          {/* {console.log(tabLabel)} */}
+          {/* {console.log(isActive)} */}
       </View>
     </Text>
     
   <Text  tabLabel='Tuesday'> 
-    <View  isActive= {tabIndex==1 } style={styles.container}>
-      <Text>Add tasks on Tuesday</Text> 
+    <View  isActive = {tabIndex==1} style={styles.container}>
+          <FlatList
+            data={tasks}
+            // renderItem={({ item , tabLabel}) => ( //if(item.day == tabLabel)
+            //   <Card item={item} />
+            // )}
+          />
     </View>
   </Text>
     
-    {/* <Text tabLabel='Wednesday'>
-      <View style={styles.container}>
-        <ScrollView>
+  <Text  tabLabel='Wednesday'> 
+    <View  isActive= {tabIndex==2 } style={styles.container}>
           <FlatList
             data={tasks}
             renderItem={({ item }) => ( //if(item.day == tabLabel)
-              <Card>
-                <Text style={styles.titleText}>{ 
-                  item.title
-                }</Text>
-                <Text style={styles.descText}>{
-                  item.description 
-                }</Text>
-              </Card> 
-            )}
-          />
-        </ScrollView>
-      </View>
-    </Text>
-
-    <Text tabLabel='Thrusday'>
-      <View style={styles.container}>
-        <ScrollView>
+              <MyComp item={item} />
+              )}
+              />
+    </View>
+  </Text>
+  <Text  tabLabel='Thursday'> 
+    <View  isActive= {tabIndex==3 } style={styles.container}>
           <FlatList
             data={tasks}
             renderItem={({ item }) => ( //if(item.day == tabLabel)
-              <Card>
-                <Text style={styles.titleText}>{ 
-                  item.title
-                }</Text>
-                <Text style={styles.descText}>{
-                  item.description 
-                }</Text>
-              </Card> 
+              <MyComp item={item} />
             )}
           />
-        </ScrollView>
-      </View>
-    </Text>
+    </View>
+  </Text>
 
-    <Text tabLabel='Friday'>
-      Add tasks on {tabLabel.key}
-    </Text>
+  <Text  tabLabel='Friday'> 
+    <View  isActive= {tabIndex==4 } style={styles.container}>
+          <FlatList
+            data={tasks}
+            renderItem={({ item }) => ( //if(item.day == tabLabel)
+              <MyComp item={item} />
+            )}
+          />
+    </View>
+  </Text>
+  
+  <Text  tabLabel='Saturday'> 
+    <View  isActive= {tabIndex==5 } style={styles.container}>
+          <FlatList
+            data={tasks}
+            renderItem={({ item }) => ( //if(item.day == tabLabel)
+              <MyComp item={item} />
+            )}
+          />
+    </View>
+  </Text>
 
-    <Text tabLabel='Saturday'>hehe</Text>
-
-    <Text tabLabel='Sunday'>ofc</Text> */}
+  <Text  tabLabel='Sunday'> 
+    <View  isActive= {tabIndex==6 } style={styles.container}>
+          <FlatList
+            data={tasks}
+            renderItem={({ item }) => ( //if(item.day == tabLabel)
+              <MyComp item={item} />
+            )}
+          />
+    </View>
+  </Text>
     
   </ScrollableTabView>
     
@@ -148,10 +145,10 @@ const ScheduleScreen = ({navigation}) =>{
 
   const styles = StyleSheet.create({
     container: {
-      flex: 1,
+      // flex: 1,
       position: 'absolute',
-      // width: "200%",
-      backgroundColor: '#fff',
+      // width: '50%' ,
+      backgroundColor: 'skyblue',
       alignItems: 'center',
       justifyContent: 'center',
     },
