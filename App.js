@@ -1,21 +1,3 @@
-// import React from 'react';
-// import { NavigationContainer } from '@react-navigation/native';
-// import Tabs from './navigation/tabs';
-// import SchState from './context/schedules/SchState';
-
-
-// const App = () => {
-//   return(
-//     <SchState>
-//       <NavigationContainer>
-
-//         <Tabs/>
-//       </NavigationContainer>
-//     </SchState>
-//   )
-// }
-
-// export default App;
 
 
 
@@ -24,7 +6,7 @@ import Login from './screens/Login';
 import HomeScreen from "./screens/HomeScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-// import { NativeBaseProvider, Box } from "native-base";
+import { NativeBaseProvider } from 'native-base';
 import {Text,StyleSheet,View} from "react-native";
 // import Schedule from "./screens/Schedule";
 // import Essentials from "./src/components/Essentials";
@@ -32,6 +14,7 @@ import {Text,StyleSheet,View} from "react-native";
 import SchState from "./context/schedules/SchState";
 // import EditSch from "./src/components/EditSch";
 import Tabs from './screens/tabs';
+// import AddLocation from "./screens/AddLocation";
 
 
 const App=()=>{

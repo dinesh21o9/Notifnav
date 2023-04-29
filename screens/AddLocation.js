@@ -1,17 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import { Button, StyleSheet, Text, View , Image, SafeAreaView ,PermissionsAndroid, Linking} from 'react-native';
-import { StatusBar } from 'expo-status-bar';
+// import { StatusBar } from 'expo-status-bar';
 import MapView, { Callout } from 'react-native-maps';
 import { Marker } from 'react-native-maps';
-import {NavigationContainer} from '@react-navigation/native';
+// import {NavigationContainer} from '@react-navigation/native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 const GOOGLE_PLACES_API_KEY = 'AIzaSyCarWhgsJP7Twj21wshCzWWS3uwXSqOHbw';
-// import Geolocation from 'react-native-geolocation-service';
 import * as Location from 'expo-location';
-import { TextInput } from 'react-native-paper';
 
 
-const HomeScreen = ({navigation}) =>{
+const AddLocation = () =>{
   const [ drop , setdrop ] = React.useState({
     longitude: 76.80944809690118,
     latitude: 29.955731570270117,
@@ -37,7 +35,6 @@ const HomeScreen = ({navigation}) =>{
         console.log('Permission to access location was denied');
         return;
       }
-
       let location = await Location.getCurrentPositionAsync({});
       console.log(location);
 
@@ -46,9 +43,8 @@ const HomeScreen = ({navigation}) =>{
         longitude : location.coords.longitude,
       })
     })();
-  }, []);
+  },[]);
 
-  
     return (
       <View style={styles.container}>
         
@@ -67,7 +63,7 @@ const HomeScreen = ({navigation}) =>{
             setRegion({
               latitude: details.geometry.location.lat,
               longitude: details.geometry.location.lng,
-              latitudeDelta: 0.11452653243126676, 
+              latitudeDelta: 0.11452653243126676,
               longitudeDelta: 0.059483014047145844,
             })
           }}
@@ -105,16 +101,14 @@ const HomeScreen = ({navigation}) =>{
               longitudeDelta: 0.059483014047145844
             }}
           >
-            
             <Marker coordinate={{
               latitude: region.latitude, 
               longitude: region.longitude
               }}/>
 
-            {/* Live location Marker */}
             <Marker
               coordinate={pin}
-              pinColor='dodgerblue'
+              pinColor='#fff'
               draggable={false}
               >
               <Callout>
@@ -122,10 +116,9 @@ const HomeScreen = ({navigation}) =>{
               </Callout>
               </Marker>
 
-            {/* Saved Location marker */}
             <Marker
               coordinate={drop}
-              pinColor='yellow'
+              pinColor='dodgerblue'
               draggable={true}
               onDragStart={(e)=>{
                 console.log("Drag start", e.nativeEvent.coordinate)
@@ -135,7 +128,7 @@ const HomeScreen = ({navigation}) =>{
                   latitude: e.nativeEvent.coordinate.latitude,
                   longitude: e.nativeEvent.coordinate.longitude
                 })
-                console.log("Drag end", e.nativeEvent.coordinate)//Gives it out in console
+                console.log("Drag start", e.nativeEvent.coordinate)//Gives it out in console
               }}
               >
               <Callout>
