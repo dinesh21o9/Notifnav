@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const SchState=(props)=>{
 
-  const host="http:192.168.29.86:8001";
+  const host="192.168.84.231:8001";
 
     const schInitial=[]
       const [schs,setSchs]=useState(schInitial)

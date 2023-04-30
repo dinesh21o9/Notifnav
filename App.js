@@ -19,7 +19,7 @@ const App=()=>{
   return(
     <SchState>
       <NavigationContainer>
-      <Stack.Navigator initialRouteName="TaskScreen">
+      <Stack.Navigator initialRouteName="TS">
         
         {/* Login Page */}
         <Stack.Screen name="Login" component={Login} options={{ headerShown: false}}/>
@@ -39,7 +39,7 @@ const App=()=>{
 
         <Stack.Screen name="Cntrbtn" component={Cntrbtn} options={{ headerShown: false}}/>
 
-        <Stack.Screen name="TaskScreen" component={TaskScreen} options={{ headerShown: false}}/>
+        <Stack.Screen name="TS" component={TaskScreen} options={{ headerShown: false}}/>
 
 
       </Stack.Navigator>

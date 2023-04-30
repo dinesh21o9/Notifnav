@@ -1,5 +1,7 @@
 import { StyleSheet, Text, View} from 'react-native'
-import React, { Component } from 'react';
+import React, {useContext, useEffect,useRef,useState} from 'react'
+import AsyncStorage from '@react-native-community/async-storage';
+import SchContext from '../context/schedules/schContext';
 import {
   NativeBaseProvider,
   Container,
@@ -11,6 +13,17 @@ import {
 } from 'native-base';
 
 const TaskScreen = () => {
+  const context = useContext(SchContext);
+  // const navigation = useNavigation();
+  const {schs,getsch,editSch}=context;
+  useEffect(()=>{
+    // if(AsyncStorage.getItem('token')){
+    //   getsch()
+    //   } 
+    // else{
+    //    }
+    getsch()
+  },[])
   const data = [{
     id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
     title: "Aafreen Khan",
@@ -48,7 +61,8 @@ const TaskScreen = () => {
     avatarUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU"
   }];
   return (
-    <NativeBaseProvider>     
+    <NativeBaseProvider>
+      {/* {schs.map((sch)=>{      */}
 <Box mt="35px">
       <Heading fontSize="4xl" mx="auto" p="4" pb="3">
         Today's Task
@@ -60,7 +74,7 @@ const TaskScreen = () => {
 }} borderColor="muted.800" pl={["0", "4"]} pr={["0", "5"]} py="2">
             <HStack space={[2, 3]} justifyContent="space-between">
               <Avatar size="48px" style={{backgroundColor:'white'}} source={{
-          uri: item.avatarUrl
+          uri:"https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Eo_circle_blue_letter-d.svg/768px-Eo_circle_blue_letter-d.svg.png?20200417110758"
         }} />
               <VStack>
               <Text style={{fontWeight: 'bold',fontSize: 20}}>
@@ -84,6 +98,7 @@ const TaskScreen = () => {
             </HStack>
           </Box>} keyExtractor={item => item.id} />
     </Box>
+      {/* })} */}
     </NativeBaseProvider>
   )
 }

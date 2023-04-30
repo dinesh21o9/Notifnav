@@ -1,11 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native'
 import { NativeBaseProvider, Button,Center,VStack,FormControl,Input,Heading } from "native-base";
-import React, {useContext} from 'react'
+import React, {useContext,useState} from 'react'
 import schContext from '../context/schedules/schContext';
 
 const Cntrbtn = () => {
     const context = useContext(schContext);
     const {addSch}=context;
+
     const [title, setTitle] = React.useState("");
     const [desc, setDesc] = React.useState("");
     const [day, setDay] = React.useState("");
@@ -13,6 +14,7 @@ const Cntrbtn = () => {
     const [ls, setLs] = React.useState("");
     const [timestr, setTimestr] = React.useState("");
     const [timeend, setTimeend] = React.useState("");
+
     const handleClick=(e)=>{
         // e.preventDefault();               // to stop reloading of page on clicking the button
         addSch(title,desc,day,ln,ls,timestr,timeend);   //function called by the SchState
@@ -25,10 +27,6 @@ const Cntrbtn = () => {
         setTimeend("")
     };
     const [formData, setData] = React.useState({});
-    function BuildingAFormExample(){
-        
-        return 
-      }
   return (
     <NativeBaseProvider>
       
