@@ -1,40 +1,21 @@
-import React, {useState, useEffect} from 'react';
-import { Button, StyleSheet, Text, View , FlatList, ScrollView, Span} from 'react-native';
+import { StyleSheet, Text, View} from 'react-native'
+import React, {useContext, useEffect,useRef,useState} from 'react'
+import AsyncStorage from '@react-native-community/async-storage';
 import { ScrollableTabView, DefaultTabBar, ScrollableTabBar } from '@valdio/react-native-scrollable-tabview'
+import SchContext from '../context/schedules/schContext';
+import {
+  NativeBaseProvider,
+  Container,
+  Header,
+  Content,
+  Card,
+  CardItem,
+  Body,Box,Heading,FlatList,HStack,Avatar,VStack,Spacer
+} from 'native-base';
 import MyComp from '../components/card';
-import { NativeBaseProvider } from 'native-base';
 
-
-const ScheduleScreen = ({navigation}) =>{
-
-  const pTasks = [
-    {user: 1, title: 'Get groceries', description: 'Buy Tomatoes and veggies', day: 'Monday', locationName: 'Market', timestr: "12:00:00", timeend: "13:00:00" },
-    {user: 1, title: 'Go to Medical store', description: 'Take 2 Aspirin and a Vaseline', day: 'Wednesday', locationName: 'Hospital', timestr: "14:00:00", timeend: "17:00:00" },
-    {user: 1, title: 'Library', description: 'Bring Rajavi and Adv Calculus', day: 'Thrusday', locationName: 'Library', timestr: "2:00:00", timeend: "5:00:00" },
-    {user: 1, title: 'Freshsers discussion', description: 'Attend SPIC meet', day: 'Friday', locationName: 'AE laws', timestr: "15:00:00", timeend: "18:00:00" },
-    {user: 1, title: 'Tech work', description: 'MicroBus Work for TechSpardha', day: 'Monday', locationName: 'L block', timestr: "18:00:00", timeend: "22:00:00" },
-  ];
-
-  const [tasks , setTasks] = useState(pTasks);
-  
-  // const [page, setPage] = useState([
-  //   { day: 'Monday', key : 0},
-  //   { day: 'Tuesday', key : 1},
-  //   { day: 'Wednesday', key : 2},
-  //   { day: 'Thrusday', key : 3},
-  //   { day: 'Friday', key : 4},
-  //   { day: 'Saturday', key : 5},
-  //   { day: 'Sunday', key : 6},
-  // ]);
-
-  
+const TaskScreen = () => {
   const [tabIndex, setTabIndex] = useState(0);
-
-
-  _onRefresh = (callback) => {
-    setTimeout(function(){test: 'Test1'} , 3000) ;
-  }
-  
   setStateForTab = (i) => {
     // const day = tabLabel[i].tabLabel;
     // const tasks = [];
@@ -47,146 +28,110 @@ const ScheduleScreen = ({navigation}) =>{
     // setDay(day);
     setTabIndex(i);    
   }
-  
-  return <ScrollableTabView
-    style={{marginTop: 10}}
-    initialPage={tabIndex}
-    refreshControlStyle={{backgroundColor: 'red'}}
-    pullToRefresh={this._onRefresh}
-    onChangeTab={(event) => {this.setStateForTab(event.i)}}
-    renderTabBar={() => <ScrollableTabBar/>
-  } 
-  >
+  const context = useContext(SchContext);
+  // const navigation = useNavigation();
+  const {schs,getsch,editSch}=context;
+  useEffect(()=>{
+    // if(AsyncStorage.getItem('token')){
+    //   getsch()
+    //   } 
+    // else{
+    //    }
+    getsch()
+  },[])
+  const data = [{
+    id: "68694a0f-3da1-431f-bd56-142371e29d72",
+    title: "Aniket Kumar",
+    locationName: "Sujitha Mathur",
+    timestr: "8:56 PM",
+    description: "All the best",
+    avatarUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr01zI37DYuR8bMV5exWQBSw28C1v_71CAh8d7GP1mplcmTgQA6Q66Oo--QedAN1B4E1k&usqp=CAU"
+  },{
+    id: "58694a0f-3da1-471f-bd96-145571e29d72",
+    title: "Anci Barroco",
+    locationName: "Sujitha Mathur",
+    timestr: "6:22 PM",
+    description: "Good Day!",
+    avatarUrl: "https://miro.medium.com/max/1400/0*0fClPmIScV5pTLoE.jpg"
+  }, {
+    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
+    title: "Groceries",
+    locationName: "Market",
+    timestr: "11:11 PM",
+    description: "Health",
+    avatarUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Eo_circle_teal_letter-t.svg/768px-Eo_circle_teal_letter-t.svg.png?20200417180559"
+  },{
+    id: "68694a0f-3da1-431f-bd56-142371e29d72",
+    title: "Test 1",
+    locationName: "Sujitha Mathur",
+    timestr: "8:56 PM",
+    description: "This is a really really long text, which is used",
+    avatarUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr01zI37DYuR8bMV5exWQBSw28C1v_71CAh8d7GP1mplcmTgQA6Q66Oo--QedAN1B4E1k&usqp=CAU"
+  },{
+    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+    title: "Meds",
+    locationName: "Hospital",
+    timestr: "12:47 PM",
+    description: "Fever",
+    avatarUrl: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Eo_circle_blue_letter-d.svg/768px-Eo_circle_blue_letter-d.svg.png?20200417110758"
+  },{
+    id: "28694a0f-3da1-471f-bd96-142456e29d72",
+    title: "Kiara",
+    locationName: "Sujitha Mathur",
+    timestr: "12:47 PM",
+    description: "I will call today.",
+    avatarUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBwgu1A5zgPSvfE83nurkuzNEoXs9DMNr8Ww&usqp=CAU"
+  }];
 
-    <Text  tabLabel='Monday'>
-      <View isActive = {tabIndex==0} style={styles.container}>
-      {/* tabLabel = 'Monday'; */}
-          <FlatList 
-            data={tasks}
-            renderItem={({ item , tabLabel}) => ( //if(item.day == tabLabel)
-              <ScrollView>
-                <MyComp item={item} />
-              </ScrollView>
-            )}
-          />
-          {/* {console.log(tabLabel)} */}
-          {/* {console.log(isActive)} */}
-      </View>
-    </Text>
+  return (
     
-  <Text  tabLabel='Tuesday'> 
-    <View  isActive = {tabIndex==1} style={styles.container}>
-          <FlatList
-            data={tasks}
-            // renderItem={({ item , tabLabel}) => ( //if(item.day == tabLabel)
-            //   <Card item={item} />
-            // )}
-          />
-    </View>
-  </Text>
-    
-  <Text  tabLabel='Wednesday'> 
-    <View  isActive= {tabIndex==2 } style={styles.container}>
-          <FlatList
-            data={tasks}
-            renderItem={({ item }) => ( //if(item.day == tabLabel)
-              <MyComp item={item} />
-              )}
-              />
-    </View>
-  </Text>
-  <Text  tabLabel='Thursday'> 
-    <View  isActive= {tabIndex==3 } style={styles.container}>
-          <FlatList
-            data={tasks}
-            renderItem={({ item }) => ( //if(item.day == tabLabel)
-              <MyComp item={item} />
-            )}
-          />
-    </View>
-  </Text>
-
-  <Text  tabLabel='Friday'> 
-    <View  isActive= {tabIndex==4 } style={styles.container}>
-          <FlatList
-            data={tasks}
-            renderItem={({ item }) => ( //if(item.day == tabLabel)
-              <MyComp item={item} />
-            )}
-          />
-    </View>
-  </Text>
-  
-  <Text  tabLabel='Saturday'> 
-    <View  isActive= {tabIndex==5 } style={styles.container}>
-          <FlatList
-            data={tasks}
-            renderItem={({ item }) => ( //if(item.day == tabLabel)
-              <MyComp item={item} />
-            )}
-          />
-    </View>
-  </Text>
-
-  <Text  tabLabel='Sunday'> 
-    <View  isActive= {tabIndex==6 } style={styles.container}>
-          <FlatList
-            data={tasks}
-            renderItem={({ item }) => ( //if(item.day == tabLabel)
-              <MyComp item={item} />
-            )}
-          />
-    </View>
-  </Text>
-    
-  </ScrollableTabView>
-    
-  }
-
-  const styles = StyleSheet.create({
-    container: {
-      // flex: 1,
-      position: 'absolute',
-      // width: '50%' ,
-      backgroundColor: 'skyblue',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    titleText: {
-      fontSize: 25,
-      marginVertical: 10,
-    },
-
-});
-
-export default ScheduleScreen ;
-
-
-
-      // <Card >
-      //     {/* <CardImage 
-      //       source={{uri: 'http://bit.ly/2GfzooV'}} 
-      //       title="Go to beach and get tanned skin"
-      //     /> */}
-      //     <CardTitle
-      //       title="Title"
-      //       subtitle="This is context"
-      //     />
-      //     <CardContent text="Content" />
-      //       <CardAction 
-      //         separator={true} 
-      //         inColumn={false}>
-      //         <CardButton
-      //           onPress={() => {}}
-      //           title="Edit"
-      //           color="#FEB557"
-      //         />
-      //         <CardButton
-      //           onPress={() => {}}
-      //           title="Delete"
-      //           color="#FEB557"
-      //         />
-      //       </CardAction>
-      // </Card>
-
+   
+    <NativeBaseProvider>
       
+      <Box mt="20px">
+
+      {/* <Heading fontSize="4xl" mx="auto" p="4" pb="3">
+        Today's Task
+      </Heading> */}
+
+      <FlatList data={data} renderItem={({item}) => <Box borderBottomWidth="2" _light={{borderColor: "muted.50"}} 
+        borderColor="muted.800" pl={["0", "4"]} pr={["0", "5"]} py="2">
+
+          {/* <HStack space={[2, 3]} justifyContent="space-between">
+          <Avatar size="48px" style={{backgroundColor:'white'}} source={{
+            uri: item.avatarUrl
+          }} />
+
+              <VStack>
+              <Text style={{fontWeight: 'bold',fontSize: 20}}>
+                {item.title}
+              </Text>
+              <Text style={{fontStyle: 'italic',fontSize: 15}}>
+                {item.locationName}
+              </Text>
+              <Text color="coolGray.600" _dark={{color: "warmGray.200"}}>
+                  {item.description}
+              </Text>
+              </VStack>
+
+              <Spacer />
+
+              <Text fontSize="xs" _dark={{color: "warmGray.50"}} 
+                color="coolGray.800" alignSelf="flex-start">
+                {item.timestr}
+              </Text>
+
+            </HStack> */}
+            <MyComp item={item} />
+
+          </Box>}
+          keyExtractor={item => item.id} 
+        />
+    </Box>
+    </NativeBaseProvider>
+  )
+}
+
+export default TaskScreen
+
+const styles = StyleSheet.create({})

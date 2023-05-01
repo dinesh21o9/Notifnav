@@ -1,3 +1,4 @@
+import { Spacer } from 'native-base';
 import React from 'react';
 import { StyleSheet,View, TouchableOpacity } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
@@ -8,32 +9,33 @@ export default function MyComp({ item , tabLabel}){
     return(
         <Card style = {styles.card}>
             <Card.Content>
-                <Text variant="titleLarge">{item.title}</Text>
+                <Text style={{fontWeight: 'bold',fontSize: 25}} variant="titleLarge">{item.title}</Text>
                 
-                    <Card.Title
-                        // title={item.title}
-                        subtitle={item.description}
-                        // left={(props) => <Avatar.Icon {...props} icon="file" />}
-                        right={(props) => <IconButton {...props} icon="pencil" onPress={() => {}} />}
-                    />
-                <Text variant="bodyMedium">{item.description}</Text>
-                <Text variant="bodyMedium">Time : {item.timestr} - {item.timeend}</Text>
+                <Card.Title color="coolGray.600" _dark={{color: "warmGray.200"}}
+                    // title={item.title}
+                    subtitle={item.description}
+                    subtitleNumberOfLines={3}
+                    left={(props) => <Avatar.Icon {...props} icon = {{URL: item.avatarUrl}} />}
+                    leftStyle={{margin: 0}}
+                    right={(props) => <IconButton {...props} icon="pencil" onPress={() => {}} />}
+                />
+
+                <Text style={{fontStyle: 'italic',fontSize: 15,fontWeight: 'bold' , marginBottom: 10}} variant="bodyMedium">{item.locationName}</Text>
+                <Text variant="bodyMedium">{item.timestr} </Text>
             </Card.Content>
             <Card.Actions>
-                <Button>Done</Button>
-                <Button>Remove</Button>
+                {/* <Button>Done</Button> */}
+                {/* <Button>Remove</Button> */}
             </Card.Actions>
         </Card>
     )
 }
 
 const styles =StyleSheet.create({
-    // container: { //For MOTO G60 change this into % for responsiveness
-    //     width: "100%",
-    //     marginLeft: 20,
-    //     marginRight: 20,
-    //     backgroundColor: 'black',
-    // },
+    leftStyle:{
+        margin:10,
+
+    },
     card: {
         justifyContent: 'center',
         // width: "100%",

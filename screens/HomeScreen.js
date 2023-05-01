@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from 'react';
-import { Button, StyleSheet, Text, View , Image, SafeAreaView ,PermissionsAndroid, Linking} from 'react-native';
-import { StatusBar } from 'expo-status-bar';
+import { Button, StyleSheet, Text, View , Image ,PermissionsAndroid} from 'react-native';
 import MapView, { Callout } from 'react-native-maps';
 import { Marker } from 'react-native-maps';
-import {NavigationContainer} from '@react-navigation/native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 const GOOGLE_PLACES_API_KEY = 'AIzaSyCarWhgsJP7Twj21wshCzWWS3uwXSqOHbw';
 // import Geolocation from 'react-native-geolocation-service';
@@ -16,13 +14,13 @@ const HomeScreen = ({navigation}) =>{
     longitude: 76.80944809690118,
     latitude: 29.955731570270117,
   })
-  
+  // Live location update
   const [ pin , setpin ] = React.useState({
       longitude: 76.81944809690118,
       latitude: 29.995731570270117,
   })
 
-  // "latitude": 29.952856657211285, "longitude": 76.80810246616602
+  // "latitude": 29.952856657211285, "longitude": 76.80810246616602 Kurukshetra
   const [ region , setRegion ] = React.useState({
     longitude: 76.80944809690118,
     latitude: 29.955731570270117,
@@ -96,20 +94,13 @@ const HomeScreen = ({navigation}) =>{
 
         />
         
-        <MapView 
-          style={styles.map}
-            initialRegion={{
-              latitude: 29.955731570270117,
-              latitudeDelta: 0.11452653243126676, 
-              longitude: 76.80944809690118, 
-              longitudeDelta: 0.059483014047145844
-            }}
-          >
-            
-            <Marker coordinate={{
-              latitude: region.latitude, 
-              longitude: region.longitude
-              }}/>
+        <MapView style={styles.map} initialRegion={region}>
+
+        {/* Destination marker */}
+        <Marker coordinate={{
+          latitude: region.latitude, 
+          longitude: region.longitude
+         }}/>
 
             {/* Live location Marker */}
             <Marker
@@ -123,7 +114,7 @@ const HomeScreen = ({navigation}) =>{
               </Marker>
 
             {/* Saved Location marker */}
-            <Marker
+            {/* <Marker
               coordinate={drop}
               pinColor='yellow'
               draggable={true}
@@ -141,7 +132,8 @@ const HomeScreen = ({navigation}) =>{
               <Callout>
                 <Text>K.U Market</Text>
               </Callout>
-            </Marker>
+            </Marker> */}
+
         </MapView>
       </View>
       

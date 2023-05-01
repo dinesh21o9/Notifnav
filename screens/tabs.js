@@ -41,7 +41,7 @@ const Tabs = () => {
             tabBarHideOnKeyboard: true,
             tabBarShowLabel: false,
               tabBarStyle: {
-                position: 'absolute',
+                position: 'relative',
                 // bottom: 25,
                 // left: 18,
                 // right: 18,
@@ -78,6 +78,7 @@ const Tabs = () => {
           <Tab.Screen name="Tasks" component={TasksScreen}
             screenOptions={{headerShown: false}}
             options={{
+              headerShown: false,
                 tabBarIcon: ({focused}) =>(
                     <View style = {{alignItems: 'center', justifyContent: 'center', top: 10}}>
                        <Image 
@@ -99,6 +100,7 @@ const Tabs = () => {
           />
           <Tab.Screen name="Add task" component={AddScreen}
             options={{
+              headerShown: false,
               tabBarIcon: ({focused}) =>(
                 <Image
                   source = {require('../assets/plus.png')}

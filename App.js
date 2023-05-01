@@ -1,6 +1,3 @@
-
-
-
 import React from "react";
 import Login from './screens/Login';
 import HomeScreen from "./screens/HomeScreen";
@@ -14,6 +11,7 @@ import {Text,StyleSheet,View} from "react-native";
 import SchState from "./context/schedules/SchState";
 // import EditSch from "./src/components/EditSch";
 import Tabs from './screens/tabs';
+import AddLocation from './screens/AddLocation';
 // import AddLocation from "./screens/AddLocation";
 
 
@@ -42,6 +40,9 @@ const App=()=>{
 
         {/* Tab */}
         <Stack.Screen name="Tabs" component={Tabs} options={{ headerShown: false}}/>
+
+        {/* Add Location */}
+        <Stack.Screen name="AddLocation" component={AddLocation} options={{ headerShown: false}}/>
 
 
       </Stack.Navigator>
