@@ -1,2 +1,2 @@
 # Notifnav
-Notifnav helps you to reminds when to complete your important saved tasks using ML and Google maps
+Notifnav helps you to remind when to complete your important saved tasks using Advanced Algorithms and live location using Google maps API.
