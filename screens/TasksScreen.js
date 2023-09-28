@@ -30,7 +30,7 @@
 import React, {useState, useEffect} from 'react';
 import {Button, StyleSheet, Text, View , Image } from 'react-native';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-const GOOGLE_PLACES_API_KEY = 'AIzaSyCarWhgsJP7Twj21wshCzWWS3uwXSqOHbw';
+const GOOGLE_PLACES_API_KEY = secrets.key;
 import * as Location from 'expo-location';
 import { Marker } from 'react-native-maps';
 import MapView, { Callout } from 'react-native-maps';
